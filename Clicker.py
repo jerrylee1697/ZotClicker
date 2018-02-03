@@ -2,8 +2,6 @@ SIZE = (640, 480)
 FPS = 30
 
 
-
-
 class Item:
     def __init__(self, rect, text, base_price, base_cps_each):
         self.rect = rect
@@ -49,7 +47,7 @@ pygame.init()
 fpsClock = pygame.time.Clock()
 
 screen = pygame.display.set_mode(SIZE)
-pygame.display.set_caption("zotclicker")
+pygame.display.set_caption("ZotClicker")
 
 BLACK = pygame.Color(0, 0, 0)
 WHITE = pygame.Color(255, 255, 255)
@@ -59,7 +57,8 @@ BUTTON_BORDER_COLOR = pygame.Color(85, 50, 232)
 
 FONT = pygame.font.SysFont("monospace", 16)
 
-COOKIE_IMAGE = pygame.image.load("zot.jpg")
+COOKIE_IMAGE = pygame.image.load("anteater.png")
+BACKGROUND_IMAGE = pygame.image.load("background.jpg")
 
 COOKIES = 0
 CPS = 0.0
@@ -79,7 +78,7 @@ def make_items(text_list, base_price_list, cps_list, rect, spacing):
     return buttons
 
 
-cookie_rect = Rect(25, 250, COOKIE_IMAGE.get_width(), COOKIE_IMAGE.get_height())
+cookie_rect = Rect(25, 150, COOKIE_IMAGE.get_width(), COOKIE_IMAGE.get_height())
 
 
 def click_cookie():
@@ -107,10 +106,11 @@ def update_cookies():
 
 while True:
     screen.fill(BLACK)
+    screen.blit(BACKGROUND_IMAGE, Rect(0,0,640 ,480))
     screen.blit(COOKIE_IMAGE, cookie_rect)
 
     #draw cookies count
-    text_surface = FONT.render(str(int(COOKIES)) + "+" + str(CPS) + "ZotPS", False, WHITE)
+    text_surface = FONT.render(str(int(COOKIES)) + " Zots" + " + "+ str(CPS) + "Zot/Sec", False, WHITE)
     text_rect = text_surface.get_rect()
     text_rect.topleft = (100, 200)
     screen.blit(text_surface, text_rect)
@@ -121,11 +121,16 @@ while True:
     calculate_cps()
     update_cookies()
 
-
     for event in pygame.event.get():
         if event.type == QUIT:
             pygame.quit()
             sys.exit()
+        #hotkey for 'z' press
+        if event.type == pygame.KEYDOWN:
+            key_name = pygame.key.name(event.key)
+            if key_name == 'z':
+                click_cookie()
+        #hotkey for mouse click
         elif event.type == MOUSEBUTTONDOWN:
             mouse_pos = event.pos
             mouse_button = event.button
