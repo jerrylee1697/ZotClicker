@@ -121,11 +121,11 @@ while True:
     calculate_cps()
     update_cookies()
 
-    
     for event in pygame.event.get():
         if event.type == QUIT:
             pygame.quit()
             sys.exit()
+        #hotkey for 'z' press
         if event.type == pygame.KEYDOWN:
             key_name = pygame.key.name(event.key)
             print(key_name)
