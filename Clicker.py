@@ -110,7 +110,7 @@ while True:
     screen.blit(COOKIE_IMAGE, cookie_rect)
 
     #draw cookies count
-    text_surface = FONT.render(str(int(COOKIES)) + "+" + str(CPS) + "Zot/Sec", False, WHITE)
+    text_surface = FONT.render(str(int(COOKIES)) + " Cookies" + " + "+ str(CPS) + "Zot/Sec", False, WHITE)
     text_rect = text_surface.get_rect()
     text_rect.topleft = (100, 200)
     screen.blit(text_surface, text_rect)
@@ -128,9 +128,9 @@ while True:
         #hotkey for 'z' press
         if event.type == pygame.KEYDOWN:
             key_name = pygame.key.name(event.key)
-            print(key_name)
             if key_name == 'z':
                 click_cookie()
+        #hotkey for mouse click
         elif event.type == MOUSEBUTTONDOWN:
             mouse_pos = event.pos
             mouse_button = event.button
