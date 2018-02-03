@@ -110,7 +110,7 @@ while True:
     screen.blit(COOKIE_IMAGE, cookie_rect)
 
     #draw cookies count
-    text_surface = FONT.render(str(int(COOKIES)) + "+" + str(CPS) + "ZotPS", False, WHITE)
+    text_surface = FONT.render(str(int(COOKIES)) + "+" + str(CPS) + "Zot/Sec", False, WHITE)
     text_rect = text_surface.get_rect()
     text_rect.topleft = (100, 200)
     screen.blit(text_surface, text_rect)
