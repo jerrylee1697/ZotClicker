@@ -57,7 +57,7 @@ WHITE = pygame.Color(255, 255, 255)
 BUTTON_BG_COLOR = pygame.Color(68, 93, 255)
 BUTTON_BORDER_COLOR = pygame.Color(85, 50, 232)
 
-FONT = pygame.font.SysFont("sysfont", 24)
+FONT = pygame.font.SysFont("monospace", 16)
 
 COOKIE_IMAGE = pygame.image.load("zot.jpg")
 
