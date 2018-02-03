@@ -78,7 +78,7 @@ def make_items(text_list, base_price_list, cps_list, rect, spacing):
     return buttons
 
 
-cookie_rect = Rect(25, 150, COOKIE_IMAGE.get_width(), COOKIE_IMAGE.get_height())
+cookie_rect = Rect(15, 200, COOKIE_IMAGE.get_width(), COOKIE_IMAGE.get_height())
 
 
 def click_cookie():
@@ -141,6 +141,7 @@ while True:
                         break
                 if cookie_rect.collidepoint(mouse_pos):
                     click_cookie()
+                    
 
     pygame.display.update()
     fpsClock.tick(FPS)
