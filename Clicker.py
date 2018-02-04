@@ -142,7 +142,7 @@ while running:
     update_cookies()
     
     for event in pygame.event.get():
-        if globalvar.COOKIES % 500 * (globalvar.CPS + 1) == 0 and globalvar.COOKIES != 0 and globalvar.COOKIES % 300 != 0:
+        if globalvar.COOKIES % 250 * (globalvar.CPS + 1) == 0 and globalvar.COOKIES != 0 and globalvar.COOKIES % 300 != 0:
             pygame.mixer.music.load('Success.mp3')
             pygame.mixer.music.play(0)
         if globalvar.COOKIES % 100 * (globalvar.CPS + 1) == 0 and globalvar.COOKIES != 0:
