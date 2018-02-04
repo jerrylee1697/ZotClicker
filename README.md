@@ -1,4 +1,4 @@
 # ZotClicker
 
-##Zot Cookie Clicker
+## Zot Cookie Clicker
 
