@@ -34,10 +34,10 @@ def click_cookie():
     globalvar.COOKIES += 1
 
 
-items = make_items(["Cursor", "Grandma", "Farm", "Factory", "Mine", "Shipment", "Alchemy Lab", "Portal",
-                    "Time machine", "Antimatter condenser", "Prism"],
-                   [15, 100, 500, 3000, 10000, 40000, 200000, 1666666, 123456789, 3999999999, 75000000000],
-                   [0.1, 0.5, 4, 10, 40, 100, 400, 6666, 98765, 999999, 10000000],
+items = make_items(["1st Years", "HackUCI", "Taco Bell", "In N Out", "UTC", "ARC", "Aldrich Park", "Student Center",
+                    "ICS", "Peter", "EECS"],
+                   [15, 100, 500, 3000, 10000, 40000, 200000, 1700000, 150000000, 5000000000, 70000000000],
+                   [0.1, 0.5, 4, 10, 40, 100, 400, 5000, 90000, 1000000, 10000000],
                    Rect(400, 25, 230, 400), 5)
 
 
@@ -64,6 +64,12 @@ while True:
     text_rect.topleft = (100, 200)
     screen.blit(text_surface, text_rect)
 
+    #draw percentage
+    belly_surface = FONT.render("Belly = "+str(globalvar.belly)+ "%", False, WHITE)
+    belly_rect = belly_surface.get_rect()
+    belly_rect.topleft = (0, 50)
+    screen.blit(belly_surface, belly_rect)
+    
     for button in items:
         button.draw(screen)
 
@@ -87,6 +93,7 @@ while True:
             key_name = pygame.key.name(event.key)
             if key_name == 'z':
                 click_cookie()
+                globalvar.belly-=.25
         #hotkey for mouse click
         elif event.type == MOUSEBUTTONDOWN:
             mouse_pos = event.pos
@@ -98,6 +105,8 @@ while True:
                         break
                 if anteater.ant_rect.collidepoint(mouse_pos):
                     click_cookie()
+                    globalvar.belly-=.25
+
         
                     
 
