@@ -3,6 +3,7 @@ import pygame
 from pygame.locals import *
 from constants import *
 from classes import Item
+from anteater import Anteater
 
 
 def make_items(text_list, base_price_list, cps_list, rect, spacing):
@@ -18,8 +19,8 @@ def make_items(text_list, base_price_list, cps_list, rect, spacing):
         buttons.append(button)
     return buttons
 
-
-cookie_rect = Rect(15, 200, COOKIE_IMAGE.get_width(), COOKIE_IMAGE.get_height())
+anteater = Anteater(ANTEATER_IMAGE)
+anteater.createA()
 
 
 def click_cookie():
@@ -48,7 +49,7 @@ def update_cookies():
 while True:
     screen.fill(BLACK)
     screen.blit(BACKGROUND_IMAGE, Rect(0,0,640 ,480))
-    screen.blit(COOKIE_IMAGE, cookie_rect)
+    screen.blit(ANTEATER_IMAGE, anteater.ant_rect)
 
     #draw cookies count
     text_surface = FONT.render(str(int(COOKIES)) + " Zots" + " + "+ str(CPS) + "Zot/Sec", False, WHITE)
@@ -82,7 +83,7 @@ while True:
                     if button.collidepoint(mouse_pos):
                         button.click()
                         break
-                if cookie_rect.collidepoint(mouse_pos):
+                if anteater.ant_rect.collidepoint(mouse_pos):
                     click_cookie()
                     
 
