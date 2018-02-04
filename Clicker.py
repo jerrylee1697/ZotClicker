@@ -55,8 +55,11 @@ def update_cookies():
 
 def belly_bot():
     globalvar.belly+=1
-
-
+    globalvar.COOKIES-=1
+    
+belly_rect =Rect(10,10, 160, 40)
+belly_button = Item(belly_rect,  "Refill Belly!(1%)", 1, 0)
+                    
 # client = sendgrid.SendGridClient("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")
 # message = sendgrid.Mail()
 
@@ -73,6 +76,7 @@ while True:
     screen.fill(BLACK)
     screen.blit(BACKGROUND_IMAGE, Rect(0,0,640 ,480))
     screen.blit(ANTEATER_IMAGE, anteater.ant_rect)
+    belly_button.drawbelly(screen)
 
     #draw cookies count
     text_surface = FONT.render(str(int(globalvar.COOKIES)) + " Zots" + " + "+ str(globalvar.CPS) + "Zot/Sec", False, WHITE)
@@ -84,7 +88,7 @@ while True:
     #draw percentage
     belly_surface = FONT.render("Belly = "+str(globalvar.belly)+ "%", False, WHITE)
     belly_rect = belly_surface.get_rect()
-    belly_rect.topleft = (0, 50)
+    belly_rect.topleft = (10, 60)
     screen.blit(belly_surface, belly_rect)
 
 
@@ -147,7 +151,8 @@ while True:
             if mouse_button == 1:
                 #belly logic
                 if globalvar.belly<=99:
-                    
+                    if belly_button.collidepoint(mouse_pos):
+                        belly_bot()
                 for button in items:
                     if button.collidepoint(mouse_pos):
                         button.click()

@@ -22,7 +22,18 @@ class Item:
         text_rect = text_surface.get_rect()
         text_rect.topleft = (self.rect.left + 10, self.rect.top + self.rect.height * 0.25)
         surface.blit(text_surface, text_rect)
-
+        
+    def drawbelly(self, surface):
+        #draw background
+        pygame.draw.rect(surface, BUTTON_BG_COLOR, self.rect, 0)
+        #draw border
+        pygame.draw.rect(surface, BUTTON_BG_COLOR, self.rect, 2)
+        #draw text
+        text_surface = FONT.render(self.text + " $" + str(int(self.price())), False, BLACK)
+        text_rect = text_surface.get_rect()
+        text_rect.topleft = (self.rect.left + 10, self.rect.top + self.rect.height * 0.25)
+        surface.blit(text_surface, text_rect)
+        
     def total_cps(self):
         return self.cps_each * self.count
 
