@@ -18,7 +18,7 @@ pygame.display.set_caption("zotclicker")
 BLACK = pygame.Color(0, 0, 0)
 WHITE = pygame.Color(255, 255, 255)
 
-BUTTON_BG_COLOR = pygame.Color(68, 93, 255)
+BUTTON_BG_COLOR = pygame.Color((178, 176, 176)
 BUTTON_BORDER_COLOR = pygame.Color(85, 50, 232)
 
 FONT = pygame.font.SysFont("Arial", 20, True)
