@@ -22,7 +22,7 @@ BUTTON_BORDER_COLOR = pygame.Color(85, 50, 232)
 
 FONT = pygame.font.SysFont("sysfont", 24)
 
-COOKIE_IMAGE = pygame.image.load("zot.jpg")
+COOKIE_IMAGE = pygame.image.load("anteater.png")
 BACKGROUND_IMAGE = pygame.image.load("background.jpg")
 
 COOKIES = 0
