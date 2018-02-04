@@ -1,0 +1,3 @@
+
+COOKIES = 0
+CPS = 0.0

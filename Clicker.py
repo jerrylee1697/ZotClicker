@@ -1,9 +1,15 @@
+# COOKIES = 0
+# CPS = 0.0
+
+import globalvar
 import sys
 import pygame
 from pygame.locals import *
 from constants import *
 from classes import Item
 from anteater import Anteater
+
+
 
 
 def make_items(text_list, base_price_list, cps_list, rect, spacing):
@@ -25,7 +31,7 @@ anteater.createA()
 
 def click_cookie():
     global COOKIES
-    COOKIES += 1
+    globalvar.COOKIES += 1
 
 
 items = make_items(["Cursor", "Grandma", "Farm", "Factory", "Mine", "Shipment", "Alchemy Lab", "Portal",
@@ -40,11 +46,12 @@ def calculate_cps():
     cps = 0.0
     for item in items:
         cps += item.total_cps()
-    CPS = cps
+    globalvar.CPS = cps
 
 def update_cookies():
     global COOKIES
-    COOKIES += CPS / FPS
+    globalvar.COOKIES += globalvar.CPS / FPS
+
 
 while True:
     screen.fill(BLACK)
@@ -52,7 +59,7 @@ while True:
     screen.blit(ANTEATER_IMAGE, anteater.ant_rect)
 
     #draw cookies count
-    text_surface = FONT.render(str(int(COOKIES)) + " Zots" + " + "+ str(CPS) + "Zot/Sec", False, WHITE)
+    text_surface = FONT.render(str(int(globalvar.COOKIES)) + " Zots" + " + "+ str(globalvar.CPS) + "Zot/Sec", False, WHITE)
     text_rect = text_surface.get_rect()
     text_rect.topleft = (100, 200)
     screen.blit(text_surface, text_rect)
@@ -66,10 +73,10 @@ while True:
     
     
     for event in pygame.event.get():
-        if COOKIES % 100 == 0 and COOKIES != 0 and COOKIES % 300 != 0:
+        if globalvar.COOKIES % 100 == 0 and globalvar.COOKIES != 0 and globalvar.COOKIES % 300 != 0:
             pygame.mixer.music.load('Success.mp3')
             pygame.mixer.music.play(0)
-        if COOKIES % 300 == 0 and COOKIES != 0:
+        if globalvar.COOKIES % 300 == 0 and globalvar.COOKIES != 0:
             pygame.mixer.music.load('OhBabyATriple.mp3')
             pygame.mixer.music.play(0)
         if event.type == QUIT:

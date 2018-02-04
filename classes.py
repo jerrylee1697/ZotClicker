@@ -2,6 +2,7 @@ import pygame
 import sys
 from pygame.locals import *
 from constants import *
+import globalvar
 
 class Item:
     def __init__(self, rect, text, base_price, base_cps_each):
@@ -32,9 +33,9 @@ class Item:
     def click(self):
         price = self.price()
         global COOKIES
-        if COOKIES >= price:
+        if globalvar.COOKIES >= price:
             self.count += 1
-            COOKIES -= price
+            globalvar.COOKIES -= price
 
     def collidepoint(self, point):
         return self.rect.collidepoint(point)
