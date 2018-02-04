@@ -59,6 +59,11 @@ def belly_bot():
     
 belly_rect =Rect(10,10, 160, 40)
 belly_button = Item(belly_rect,  "Refill Belly!(1%)", 1, 0)
+
+cps_variable = 200
+
+clicker_rect = Rect(200, 10, 180, 40)
+clicker_button = Item(clicker_rect, "Click Multiplier!", cps_variable, 0)
                     
 # client = sendgrid.SendGridClient("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")
 # message = sendgrid.Mail()
@@ -76,7 +81,12 @@ while True:
     screen.fill(BLACK)
     screen.blit(BACKGROUND_IMAGE, Rect(0,0,640 ,480))
     screen.blit(ANTEATER_IMAGE, anteater.ant_rect)
+    clicker_button.base_price = 200*(globalvar.CPS + 1)
+    #Draw belly button
     belly_button.drawbelly(screen)
+    
+    #Draw dlicker multiplier button
+    clicker_button.drawbelly(screen)
 
     #draw cookies count
     text_surface = FONT.render(str(int(globalvar.COOKIES)) + " Zots" + " + "+ str(globalvar.CPS) + "Zot/Sec", False, WHITE)
@@ -91,36 +101,38 @@ while True:
     belly_rect.topleft = (10, 60)
     screen.blit(belly_surface, belly_rect)
 
+   
+
 
     if (globalvar.CPS > 0.8):
-    	counter = 2
+        counter = 2
     if (globalvar.CPS > 1.4):
-    	counter = 3
+        counter = 3
     if (globalvar.CPS > 5):
-    	counter = 4
+        counter = 4
     if (globalvar.CPS > 10):
-    	counter = 5
+        counter = 5
     if (globalvar.CPS > 30):
-    	counter = 6
+        counter = 6
     if (globalvar.CPS > 100):
-    	counter = 7
+        counter = 7
     if (globalvar.CPS > 325):
-    	counter = 8
+        counter = 8
     if (globalvar.CPS > 3000):
-    	counter = 9
+        counter = 9
     if (globalvar.CPS > 50000):
-    	counter = 10
+        counter = 10
     if (globalvar.CPS > 600000):
-    	counter = 11
+        counter = 11
     if (globalvar.CPS > 7000000):
-    	counter = 12
+        counter = 12
 
     i = 0
 
     for button in items:
         if (i < counter):
-        	button.draw(screen)
-        	i += 1
+            button.draw(screen)
+            i += 1
 
     calculate_cps()
     update_cookies()
@@ -128,10 +140,10 @@ while True:
     
     
     for event in pygame.event.get():
-        if globalvar.COOKIES % 100 == 0 and globalvar.COOKIES != 0 and globalvar.COOKIES % 300 != 0:
+        if globalvar.COOKIES % 100 * (globalvar.CPS + 1) == 0 and globalvar.COOKIES != 0 and globalvar.COOKIES % 300 != 0:
             pygame.mixer.music.load('Success.mp3')
             pygame.mixer.music.play(0)
-        if globalvar.COOKIES % 300 == 0 and globalvar.COOKIES != 0:
+        if globalvar.COOKIES % 100 * (globalvar.CPS + 1) == 0 and globalvar.COOKIES != 0:
             pygame.mixer.music.load('OhBabyATriple.mp3')
             pygame.mixer.music.play(0)
         if event.type == QUIT:
@@ -142,14 +154,22 @@ while True:
             key_name = pygame.key.name(event.key)
             if key_name == 'z':
                 if globalvar.belly>=0:
-                    click_cookie()
-                    globalvar.belly-=.25
+                    m = 0 
+                    while m < globalvar.Multiplier:
+                        click_cookie()
+                        globalvar.belly-=.25
+                        m+=1
         #hotkey for mouse click
         elif event.type == MOUSEBUTTONDOWN:
             mouse_pos = event.pos
             mouse_button = event.button
             if mouse_button == 1:
                 #belly logic
+
+                if globalvar.COOKIES > 200*(globalvar.CPS + 1):
+                    if clicker_button.collidepoint(mouse_pos):
+                        globalvar.Multiplier += 1
+                        globalvar.COOKIES -= (200*(globalvar.CPS + 1))
 
                 if globalvar.belly<=99:
                     if belly_button.collidepoint(mouse_pos):
@@ -161,9 +181,11 @@ while True:
                         break
                 if anteater.ant_rect.collidepoint(mouse_pos):
                     if globalvar.belly>=0:
-                        click_cookie()
-                        globalvar.belly-=.25
-
+                        m = 0
+                        while m < globalvar.Multiplier:
+                            click_cookie()
+                            globalvar.belly-=.25
+                            m+=1
         
                     
 
