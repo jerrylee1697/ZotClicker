@@ -24,7 +24,7 @@ WHITE = pygame.Color(255, 255, 255)
 BUTTON_BG_COLOR = pygame.Color(68, 93, 255)
 BUTTON_BORDER_COLOR = pygame.Color(85, 50, 232)
 
-FONT = pygame.font.SysFont("sysfont", 24)
+FONT = pygame.font.SysFont("Arial", 20, True)
 
 ANTEATER_IMAGE = pygame.image.load("anteater.png")
 BACKGROUND_IMAGE = pygame.image.load("background.jpg")
