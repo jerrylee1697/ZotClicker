@@ -53,7 +53,8 @@ def update_cookies():
     global COOKIES
     globalvar.COOKIES += globalvar.CPS / FPS
 
-
+def belly_bot():
+    globalvar.belly+=1
 
 
 # client = sendgrid.SendGridClient("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")
@@ -85,6 +86,7 @@ while True:
     belly_rect = belly_surface.get_rect()
     belly_rect.topleft = (0, 50)
     screen.blit(belly_surface, belly_rect)
+
 
     if (globalvar.CPS > 0.8):
     	counter = 2
@@ -135,20 +137,25 @@ while True:
         if event.type == pygame.KEYDOWN:
             key_name = pygame.key.name(event.key)
             if key_name == 'z':
-                click_cookie()
-                globalvar.belly-=.25
+                if globalvar.belly>=0:
+                    click_cookie()
+                    globalvar.belly-=.25
         #hotkey for mouse click
         elif event.type == MOUSEBUTTONDOWN:
             mouse_pos = event.pos
             mouse_button = event.button
             if mouse_button == 1:
+                #belly logic
+                if globalvar.belly<=99:
+                    
                 for button in items:
                     if button.collidepoint(mouse_pos):
                         button.click()
                         break
                 if anteater.ant_rect.collidepoint(mouse_pos):
-                    click_cookie()
-                    globalvar.belly-=.25
+                    if globalvar.belly>=0:
+                        click_cookie()
+                        globalvar.belly-=.25
 
         
                     
