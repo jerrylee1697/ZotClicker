@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 SIZE = (640, 480)
 FPS = 30
 
@@ -37,30 +38,13 @@ class Item:
     def collidepoint(self, point):
         return self.rect.collidepoint(point)
 
+=======
+>>>>>>> d8986e4e701cc4ea5acc9e52bb4bb6f8d80eae98
 import sys
 import pygame
 from pygame.locals import *
-
-pygame.init()
-
-fpsClock = pygame.time.Clock()
-
-screen = pygame.display.set_mode(SIZE)
-pygame.display.set_caption("ZotClicker")
-
-BLACK = pygame.Color(0, 0, 0)
-WHITE = pygame.Color(255, 255, 255)
-
-BUTTON_BG_COLOR = pygame.Color(68, 93, 255)
-BUTTON_BORDER_COLOR = pygame.Color(85, 50, 232)
-
-FONT = pygame.font.SysFont("monospace", 16)
-
-COOKIE_IMAGE = pygame.image.load("anteater.png")
-BACKGROUND_IMAGE = pygame.image.load("background.jpg")
-
-COOKIES = 0
-CPS = 0.0
+from constants import *
+from classes import Item
 
 
 def make_items(text_list, base_price_list, cps_list, rect, spacing):
@@ -77,7 +61,7 @@ def make_items(text_list, base_price_list, cps_list, rect, spacing):
     return buttons
 
 
-cookie_rect = Rect(25, 150, COOKIE_IMAGE.get_width(), COOKIE_IMAGE.get_height())
+cookie_rect = Rect(15, 200, COOKIE_IMAGE.get_width(), COOKIE_IMAGE.get_height())
 
 
 def click_cookie():
@@ -142,6 +126,7 @@ while True:
                         break
                 if cookie_rect.collidepoint(mouse_pos):
                     click_cookie()
+                    
 
     pygame.display.update()
     fpsClock.tick(FPS)
