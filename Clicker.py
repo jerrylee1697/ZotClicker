@@ -8,6 +8,7 @@ from pygame.locals import *
 from constants import *
 from classes import Item
 from anteater import Anteater
+# from sendgrid_python import sendgrid
 
 
 
@@ -53,6 +54,20 @@ def update_cookies():
     globalvar.COOKIES += globalvar.CPS / FPS
 
 
+
+
+# client = sendgrid.SendGridClient("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")
+# message = sendgrid.Mail()
+
+# message.add_to("kseme001@ucr.edu")
+# message.set_from("jlee401@ucr.edu")
+# message.set_subject("Sending with SendGrid is Fun")
+# message.set_html("and easy to do anywhere, even with Python")
+
+# client.send(message)
+
+counter = 1
+
 while True:
     screen.fill(BLACK)
     screen.blit(BACKGROUND_IMAGE, Rect(0,0,640 ,480))
@@ -64,14 +79,42 @@ while True:
     text_rect.topleft = (100, 200)
     screen.blit(text_surface, text_rect)
 
+
     #draw percentage
     belly_surface = FONT.render("Belly = "+str(globalvar.belly)+ "%", False, WHITE)
     belly_rect = belly_surface.get_rect()
     belly_rect.topleft = (0, 50)
     screen.blit(belly_surface, belly_rect)
-    
+
+    if (globalvar.CPS > 0.8):
+    	counter = 2
+    if (globalvar.CPS > 1.4):
+    	counter = 3
+    if (globalvar.CPS > 5):
+    	counter = 4
+    if (globalvar.CPS > 10):
+    	counter = 5
+    if (globalvar.CPS > 30):
+    	counter = 6
+    if (globalvar.CPS > 100):
+    	counter = 7
+    if (globalvar.CPS > 325):
+    	counter = 8
+    if (globalvar.CPS > 3000):
+    	counter = 9
+    if (globalvar.CPS > 50000):
+    	counter = 10
+    if (globalvar.CPS > 600000):
+    	counter = 11
+    if (globalvar.CPS > 7000000):
+    	counter = 12
+
+    i = 0
+
     for button in items:
-        button.draw(screen)
+        if (i < counter):
+        	button.draw(screen)
+        	i += 1
 
     calculate_cps()
     update_cookies()
