@@ -8,7 +8,7 @@ from pygame.locals import *
 from constants import *
 from classes import Item
 from anteater import Anteater
-# from sendgrid_python import sendgrid
+#from sendgrid_python import sendgrid
 
 
 
@@ -65,24 +65,28 @@ cps_variable = 200
 clicker_rect = Rect(200, 10, 180, 40)
 clicker_button = Item(clicker_rect, "Click Multiplier!", cps_variable, 0)
                     
-# client = sendgrid.SendGridClient("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")
-# message = sendgrid.Mail()
-
-# message.add_to("kseme001@ucr.edu")
-# message.set_from("jlee401@ucr.edu")
-# message.set_subject("Sending with SendGrid is Fun")
-# message.set_html("and easy to do anywhere, even with Python")
-
-# client.send(message)
+##client = sendgrid.SendGridClient("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")
+##message = sendgrid.Mail()
+##
+##message.add_to("kseme001@ucr.edu")
+##message.set_from("jlee401@ucr.edu")
+##message.set_subject("Sending with SendGrid is Fun")
+##message.set_html("and easy to do anywhere, even with Python")
+##
+##client.send(message)
 
 counter = 1
-
-while True:
+running = True
+while running:
     screen.fill(BLACK)
     screen.blit(BACKGROUND_IMAGE, Rect(0,0,640 ,480))
     screen.blit(ANTEATER_IMAGE, anteater.ant_rect)
+
     clicker_button.base_price = 200*(globalvar.CPS + 1)
     #Draw belly button
+
+    anteater.remove()
+
     belly_button.drawbelly(screen)
     
     #Draw dlicker multiplier button
@@ -136,11 +140,14 @@ while True:
 
     calculate_cps()
     update_cookies()
-
-    
     
     for event in pygame.event.get():
         if globalvar.COOKIES % 100 * (globalvar.CPS + 1) == 0 and globalvar.COOKIES != 0 and globalvar.COOKIES % 300 != 0:
+
+        if event.type == pygame.QUIT:
+            running = False
+        if globalvar.COOKIES % 100 == 0 and globalvar.COOKIES != 0 and globalvar.COOKIES % 300 != 0:
+
             pygame.mixer.music.load('Success.mp3')
             pygame.mixer.music.play(0)
         if globalvar.COOKIES % 100 * (globalvar.CPS + 1) == 0 and globalvar.COOKIES != 0:
@@ -154,11 +161,14 @@ while True:
             key_name = pygame.key.name(event.key)
             if key_name == 'z':
                 if globalvar.belly>=0:
+
                     m = 0 
                     while m < globalvar.Multiplier:
                         click_cookie()
                         globalvar.belly-=.25
                         m+=1
+                    anteater.move() 
+
         #hotkey for mouse click
         elif event.type == MOUSEBUTTONDOWN:
             mouse_pos = event.pos
@@ -186,8 +196,8 @@ while True:
                             click_cookie()
                             globalvar.belly-=.25
                             m+=1
-        
-                    
+                        anteater.move()                    
+
 
     pygame.display.update()
     fpsClock.tick(FPS)

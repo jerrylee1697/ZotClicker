@@ -8,9 +8,9 @@ class Anteater:
     def createA(self):
         self.ant_rect= Rect(15, 200, self.image.get_width(), self.image.get_height())
     def move(self):
-        self.ant_rect= Rect(15, 200, self.image.get_width()+ 50, self.image.get_height()+50)
+        self.ant_rect= Rect(5, 200, self.image.get_width(), self.image.get_height())
     def remove(self):
-        self.ant_rect= Rect(15, 200, self.image.get_width(), self.image.get_height())
+        self.ant_rect= Rect(20, 200, self.image.get_width(), self.image.get_height())
                             
 
 
