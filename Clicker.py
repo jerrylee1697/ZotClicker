@@ -65,6 +65,9 @@ while True:
     
     
     for event in pygame.event.get():
+        if COOKIES % 25 == 0:
+            pygame.mixer.music.load('Success.mp3')
+            pygame.mixer.music.play(0)
         if event.type == QUIT:
             pygame.quit()
             sys.exit()
@@ -84,6 +87,7 @@ while True:
                         break
                 if cookie_rect.collidepoint(mouse_pos):
                     click_cookie()
+        
                     
 
     pygame.display.update()
