@@ -161,9 +161,9 @@ while running:
                     m = 0 
                     while m < globalvar.Multiplier:
                         click_cookie()
-                        globalvar.belly-=.25
                         m+=1
-                    anteater.move() 
+                    anteater.move()
+                    globalvar.belly-=.25 
 
         #hotkey for mouse click
         elif event.type == MOUSEBUTTONDOWN:
@@ -190,9 +190,9 @@ while running:
                         m = 0
                         while m < globalvar.Multiplier:
                             click_cookie()
-                            globalvar.belly-=.25
                             m+=1
-                        anteater.move()                    
+                        anteater.move()   
+                        globalvar.belly-=.25                 
 
 
     pygame.display.update()
