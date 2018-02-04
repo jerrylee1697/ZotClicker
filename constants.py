@@ -1,6 +1,3 @@
-# COOKIES = 0
-# CPS = 0.0
-
 import sys
 import pygame
 from pygame.locals import *
