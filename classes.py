@@ -16,7 +16,7 @@ class Item:
         #draw background
         pygame.draw.rect(surface, BUTTON_BG_COLOR, self.rect, 0)
         #draw border
-        pygame.draw.rect(surface, BUTTON_BG_COLOR, self.rect, 2)
+        pygame.draw.rect(surface, BUTTON_BORDER_COLOR, self.rect, 2)
         #draw text
         text_surface = FONT.render(str(self.count) + "x" + self.text + " $" + str(int(self.price())), False, BLACK)
         text_rect = text_surface.get_rect()
@@ -27,7 +27,7 @@ class Item:
         #draw background
         pygame.draw.rect(surface, BUTTON_BG_COLOR, self.rect, 0)
         #draw border
-        pygame.draw.rect(surface, BUTTON_BG_COLOR, self.rect, 2)
+        pygame.draw.rect(surface, BUTTON_BORDER_COLOR, self.rect, 2)
         #draw text
         text_surface = FONT.render(self.text + " $" + str(int(self.price())), False, BLACK)
         text_rect = text_surface.get_rect()
