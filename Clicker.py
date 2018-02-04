@@ -146,7 +146,6 @@ while True:
             mouse_button = event.button
             if mouse_button == 1:
                 #belly logic
-                if globalvar.belly<=99:
                     
                 for button in items:
                     if button.collidepoint(mouse_pos):
