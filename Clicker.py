@@ -65,8 +65,11 @@ while True:
     
     
     for event in pygame.event.get():
-        if COOKIES % 25 == 0:
+        if COOKIES % 100 == 0 and COOKIES != 0 and COOKIES % 300 != 0:
             pygame.mixer.music.load('Success.mp3')
+            pygame.mixer.music.play(0)
+        if COOKIES % 300 == 0 and COOKIES != 0:
+            pygame.mixer.music.load('OhBabyATriple.mp3')
             pygame.mixer.music.play(0)
         if event.type == QUIT:
             pygame.quit()
