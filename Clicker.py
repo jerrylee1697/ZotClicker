@@ -37,7 +37,6 @@ class Item:
     def collidepoint(self, point):
         return self.rect.collidepoint(point)
 
-
 import sys
 import pygame
 from pygame.locals import *
@@ -121,6 +120,8 @@ while True:
     calculate_cps()
     update_cookies()
 
+    
+    
     for event in pygame.event.get():
         if event.type == QUIT:
             pygame.quit()
