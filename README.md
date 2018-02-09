@@ -1,5 +1,5 @@
 # ZotClicker
-
+This project was made for HackUCI 2018.
 ## Zot Cookie Clicker
 Users click to earn zots. Using zots, users can purchase upgrades to increase their Zots per Second rate. 
 The higher the user's Zots per Second, the more upgrades become available to the user, allowing the user to progress through the game faster.
